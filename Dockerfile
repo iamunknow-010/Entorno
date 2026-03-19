@@ -1,5 +1,5 @@
 #1. imagen de python oficial como base
-FROM phyton:3.12-slim
+FROM python:3.12-slim
 
 #2. Directorio de trabjo dentro del contenedor
 WORKDIR /app
