@@ -5,4 +5,5 @@ print("Conexión con la base de datos configurada (simulada).")
 
 # Este bucle evita que el contenedor se apague
 while True:
-    time.sleep(3600)  # Duerme una hora y repite
+    time=time.sleep(3600)  # Duerme una hora y repite
+    print(time)
