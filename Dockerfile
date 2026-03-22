@@ -12,4 +12,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # 5. Comando por defecto al iniciar el contenedor
-CMD ["python", "app.py"]
+CMD ["python", "-u", "app.py"]
