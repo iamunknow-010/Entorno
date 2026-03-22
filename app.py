@@ -1,9 +1,9 @@
-import time
+import numpy as np
+import time 
 
-print("🚀 Entorno de aprendizaje iniciado con éxito.")
-print("Conexión con la base de datos configurada (simulada).")
+print("🧪 Iniciando experimento de error...")
 
-# Este bucle evita que el contenedor se apague
 while True:
-    print(time.ctime()) # Esto imprime el día, hora, minutos y segundos actual
-    time.sleep(1)
+    matriz=np.array([1,2,3])
+    print(f"✅ Todo bien por ahora, la matriz es: {matriz}")
+    time.sleep(5)
