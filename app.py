@@ -5,5 +5,5 @@ print("Conexión con la base de datos configurada (simulada).")
 
 # Este bucle evita que el contenedor se apague
 while True:
-    time=time.sleep(3600)  # Duerme una hora y repite
-    print(time)
+    print(time.ctime()) # Esto imprime el día, hora, minutos y segundos actual
+    time.sleep(1)
