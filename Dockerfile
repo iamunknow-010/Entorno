@@ -1,15 +1,28 @@
-#1. imagen de python oficial como base
+# Usamos una imagen oficial y estable
 FROM python:3.12-slim
 
-#2. Directorio de trabjo dentro del contenedor
+# Variables de entorno para optimizar Python en contenedores
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
+
 WORKDIR /app
 
-#3. Copiamos archivo de dependencias y se instalan
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Instalación de dependencias del sistema con limpieza de logs para reducir tamaño
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libpq-dev \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
 
-#4. Se copia el resto de codigo
+# Copiamos solo requerimientos primero (Aprovechamiento de Caché de capas)
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# Copiamos el resto del código
 COPY . .
 
-# 5. Comando por defecto al iniciar el contenedor
-CMD ["python", "-u", "app.py"]
+# Seguridad: No correr como root (Opcional pero muy profesional)
+# RUN useradd -m myuser
+# USER myuser
+
+CMD ["python", "app.py"]

@@ -1,0 +1,21 @@
+# Control de Versiones
+.git
+.gitignore
+
+# Entornos Virtuales (NUNCA subas el venv local a Docker)
+venv/
+.env
+
+# Cache de Python
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDEs
+.vscode/
+.idea/
+
+# Documentación innecesaria en producción
+README.md
+docs/
