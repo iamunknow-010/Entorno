@@ -3,6 +3,7 @@ import psycopg2
 from dotenv import load_dotenv
 from sklearn.linear_model import LinearRegression
 import numpy as np
+import joblib
 
 load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -71,7 +72,17 @@ def entrenar_ia():
 if __name__ == "__main__":
     probar_conexion()
     crear_tabla()
-    modelo_ia = entrenar_ia()
+
+    nombre_archivo = "modelo_ia.pkl"
+
+    if os.path.exists(nombre_archivo):
+        modelo_ia = joblib.load(nombre_archivo)
+        print("🧠 Modelo cargado desde el archivo (Inferencia rápida)")
+    else:
+        modelo_ia = entrenar_ia()
+        joblib.dump(modelo_ia, nombre_archivo)
+        print("🎓 Modelo entrenado y guardado por primera vez")
+
 
     numero_nuevo = np.array([[20]])
     prediccion = modelo_ia.predict(numero_nuevo)[0]
